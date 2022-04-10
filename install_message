@@ -2,9 +2,9 @@
 TIP:	Faz backup do CONTROL
 ################################################################################
 antes de executar os comandos da simulação, este programa modifica os ficheiros:
-		MOL_PATH + mol.xyz:
+    MOL_PATH + mol.xyz:
 	- colocando "mol oplsaa.ff" na segunda linha
-		CONTROL
+    CONTROL
 	- na primeira linha substitui o nome da molécula
 	- na linha 14 coloca o cutoff baseado no lado da caixa (N/2 - Co)
 ################################################################################
