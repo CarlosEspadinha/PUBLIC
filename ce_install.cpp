@@ -179,6 +179,9 @@ void INSTALL(ce_bash& bash, string program) {
 
 		//ALIAS
 		bash.addfile(path + APP_FOLDER + "/ALIAS");
+		
+		//remove
+		system(("rm -r " + path + "/last.zip").c_str());
 
 		//READ
 		message = "cat " + path + APP_FOLDER + "/install_message";
