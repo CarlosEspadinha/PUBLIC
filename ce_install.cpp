@@ -157,7 +157,7 @@ void INSTALL(ce_bash& bash, string program) {
 		cout << "################################################################################" << endl;
 		GIT_WGET = "https://github.com/CarlosEspadinha/PUBLIC/archive/refs/heads/Simul4.zip";
 		APP_FOLDER = "/PUBLIC-Simul4";
-		EXEC = path + "/simul";
+		EXEC = "/simul";
 	} else if (false) {
 	} else if (false) {
 	} else {
