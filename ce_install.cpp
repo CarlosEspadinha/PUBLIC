@@ -127,7 +127,7 @@ void INSTALL(ce_bash& bash, string program) {
 	string APP_FOLDER, GIT_WGET, EXEC;
 	bool p = true;
 	if (program == "self" || program == "update") {
-		cout << "\"Updating\" ce_install" << endl;
+		cout << "Updating ce_install" << endl;
 		p = false;
 		//ce_install
 		GIT_WGET = "https://raw.githubusercontent.com/CarlosEspadinha/PUBLIC/main/ce_install.cpp";
