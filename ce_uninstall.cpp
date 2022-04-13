@@ -1,7 +1,7 @@
-#include <sys/stat.h>
+//#include <sys/stat.h>
 #include <iostream>
 #include <unistd.h>
-#include <sys/types.h>
+//#include <sys/types.h>
 #include <pwd.h>
 #include <string>
 #include <map>
@@ -49,26 +49,6 @@ class ce_bash {
 				self.push_back("#");
 			}
 		}
-		void add(string key, string obj) {
-			dict[key] = obj;
-		}
-		void addfile(string file) {
-			ifstream bashf(file);
-			string line;
-			vector<string> vec;
-			while (getline(bashf, line)) {
-				vec.push_back(line);
-			}
-			if (vec.size()%3 == 0) {
-				for (int i=0; i<vec.size(); i+=3) {
-					dict[vec[i]] = vec[i+1];
-				}
-			}
-			bashf.close();
-		}
-		void del(string key) {
-			dict.erase(key);
-		}
 		void delfile(string file) {
 			ifstream bashf(file);
 			string line;
@@ -96,14 +76,6 @@ class ce_bash {
 			}
 			bash.close();
 		}
-		void install() {
-			if (after.size() == 0) {
-				before.push_back("###__CE_APPS_BASH__");
-				after.push_back("###__CE_EPPS_BASH__");
-			}
-			this->convert_vec();
-			this->write_out();
-		}
 		void uninstall() {
 			if (after.size() != 0) {
 				before.pop_back();
@@ -121,7 +93,7 @@ class ce_bash {
 };
 
 //Global
-string path;
+string path, prog, message;
 
 void UNINSTALL(ce_bash& bash, string program) {
 	string APP_FOLDER;
@@ -138,7 +110,7 @@ void UNINSTALL(ce_bash& bash, string program) {
 		bash.delfile(path + APP_FOLDER + "/ALIAS");
 		bash.convert_vec();
 		bash.write_out();
-		remove(path + APP_FOLDER);
+		system(("rm -r " + path + APP_FOLDER).c_str());
 		cout << program << " removed from " << path << endl;
 	}
 }
@@ -149,11 +121,13 @@ int main(int argc, char *argv[]) {
 	path += "/CE_ALL";
 	if (argc > 1) {
 		for (int i=1; i<argc; i++) {
-			if (argv[i] == "--ce_sys") {
+			prog = argv[i];
+			if (prog == "--ce_sys") {
 				bash.uninstall();
-				remove(path.c_str());
+				system(("rm -r " + path).c_str());
+				cout << prog << " removed(" << path << ")" << endl;
 				break;
-			} else UNINSTALL(bash, argv[i]);
+			} else UNINSTALL(bash, prog);
 		}
-	}
+	} else cout << "ERROR: requires an argument" << endl;
 }

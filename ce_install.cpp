@@ -129,21 +129,29 @@ void INSTALL(ce_bash& bash, string program) {
 	if (program == "self" || program == "update") {
 		cout << "\"Updating\" ce_install" << endl;
 		p = false;
+		//ce_install
 		GIT_WGET = "https://raw.githubusercontent.com/CarlosEspadinha/PUBLIC/main/ce_install.cpp";
-		message = "wget -q -O " + path + "/last.zip " + GIT_WGET;
+		message = "wget -q -O " + path + "/ce_install.cpp " + GIT_WGET;
 		system(message.c_str());
 		message = "g++ -std=c++11 " + path + "/ce_install.cpp -o " + path + "/ce_install";
 		system(message.c_str());
-
 		message = "chmod u+x " + path + "/ce_install";
+		system(message.c_str());
+		//ce_uninstall
+		GIT_WGET = "https://raw.githubusercontent.com/CarlosEspadinha/PUBLIC/main/ce_uninstall.cpp";
+		message = "wget -q -O " + path + "/ce_uninstall.cpp " + GIT_WGET;
+		system(message.c_str());
+		message = "g++ -std=c++11 " + path + "/ce_uninstall.cpp -o " + path + "/ce_uninstall";
+		system(message.c_str());
+		message = "chmod u+x " + path + "/ce_uninstall";
 		system(message.c_str());
 
 		//ALIAS
-		message = "g++ -std=c++11 " + path + "/ce_install.cpp -o ce_install";
 		bash.add("###CE_define ce_install", "alias ce_install=\"" + path + "/ce_install" + "\"");
-
-		remove((path+"/ALIAS").c_str());
+		bash.add("###CE_define ce_install", "alias ce_uninstall=\"" + path + "/ce_uninstall" + "\"");
+		//remove((path+"/ALIAS").c_str());
 		remove((path+"/ce_install.cpp").c_str());
+		remove((path+"/ce_uninstall.cpp").c_str());
 	} else if (program == "Simul4") {
 		cout << "\"Installing\" " << program << " at " << path << endl;
 		cout << "################################################################################" << endl;
@@ -188,6 +196,6 @@ int main(int argc, char *argv[]) {
 		for (int i=1; i<argc; i++) {
 			INSTALL(bash, argv[i]);
 		}
-		bash.install();
 	}
+	bash.install();
 }
