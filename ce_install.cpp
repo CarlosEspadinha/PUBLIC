@@ -148,7 +148,7 @@ void INSTALL(ce_bash& bash, string program) {
 
 		//ALIAS
 		bash.add("###CE_define ce_install", "alias ce_install=\"" + path + "/ce_install" + "\"");
-		bash.add("###CE_define ce_install", "alias ce_uninstall=\"" + path + "/ce_uninstall" + "\"");
+		bash.add("###CE_define ce_uninstall", "alias ce_uninstall=\"" + path + "/ce_uninstall" + "\"");
 		//remove((path+"/ALIAS").c_str());
 		remove((path+"/ce_install.cpp").c_str());
 		remove((path+"/ce_uninstall.cpp").c_str());
