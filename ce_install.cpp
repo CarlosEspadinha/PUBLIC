@@ -174,7 +174,7 @@ void INSTALL(ce_bash& bash, string program) {
 		system(message.c_str());
 
 		//chmod
-		message = "chmod u+x " + path + EXEC;
+		message = "chmod u+x " + path + APP_FOLDER + EXEC;
 		system(message.c_str());
 
 		//ALIAS
